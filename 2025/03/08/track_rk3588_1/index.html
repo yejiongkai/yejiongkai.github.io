@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>无人机跟踪器——介绍和展示 | YJK的博客</title><meta name="author" content="叶炯凯"><meta name="copyright" content="叶炯凯"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="临近毕业，担心找不到工作，于是开启我的博客生涯，希望能够被未来的老板赏识(祈祷)。  项目介绍考虑到未来低空经济不断发展，无人机智能化是未来所趋，加上导师的吩咐，我的课题应运而生。之前实验室的跟踪器基本只是一个demo(在开发板上跑个模型识别下视频就算完成)，而导师对我的要求是将其做成一个产品(此时我的小脑袋瓜充满问号)，所以我费劲脑汁，从产品的三要素出发(用户需求，功能，性能)开始了我的RK35">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无人机跟踪器——介绍和展示">
+<meta property="og:url" content="http://example.com/2025/03/08/track_rk3588_1/index.html">
+<meta property="og:site_name" content="YJK的博客">
+<meta property="og:description" content="临近毕业，担心找不到工作，于是开启我的博客生涯，希望能够被未来的老板赏识(祈祷)。  项目介绍考虑到未来低空经济不断发展，无人机智能化是未来所趋，加上导师的吩咐，我的课题应运而生。之前实验室的跟踪器基本只是一个demo(在开发板上跑个模型识别下视频就算完成)，而导师对我的要求是将其做成一个产品(此时我的小脑袋瓜充满问号)，所以我费劲脑汁，从产品的三要素出发(用户需求，功能，性能)开始了我的RK35">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-03-08T12:46:36.972Z">
+<meta property="article:modified_time" content="2025-04-12T10:14:08.774Z">
+<meta property="article:author" content="叶炯凯">
+<meta property="article:tag" content="RK3588">
+<meta property="article:tag" content="跟踪器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "无人机跟踪器——介绍和展示",
+  "url": "http://example.com/2025/03/08/track_rk3588_1/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2025-03-08T12:46:36.972Z",
+  "dateModified": "2025-04-12T10:14:08.774Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "叶炯凯",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/butterfly-icon.png"><link rel="canonical" href="http://example.com/2025/03/08/track_rk3588_1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '无人机跟踪器——介绍和展示',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/RK3588"><i class="fa-fw fas fa-tags"></i><span> 开发板</span></a></li><li><a class="site-page child" href="/categories/image/"><i class="fa-fw fas fa-video"></i><span> 图像算法软件</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://github.com/yejiongkai/yejiongkai.github.io/blob/main/resource/resume.pdf"><i class="fa-fw fas fa-heart"></i><span> 个人简历</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/top_img.jpeg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">YJK的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">无人机跟踪器——介绍和展示</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/RK3588"><i class="fa-fw fas fa-tags"></i><span> 开发板</span></a></li><li><a class="site-page child" href="/categories/image/"><i class="fa-fw fas fa-video"></i><span> 图像算法软件</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://github.com/yejiongkai/yejiongkai.github.io/blob/main/resource/resume.pdf"><i class="fa-fw fas fa-heart"></i><span> 个人简历</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">无人机跟踪器——介绍和展示</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-08T12:46:36.972Z" title="发表于 2025-03-08 20:46:36">2025-03-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-12T10:14:08.774Z" title="更新于 2025-04-12 18:14:08">2025-04-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%9F%BA%E4%BA%8ERK3588%E7%9A%84%E6%97%A0%E4%BA%BA%E6%9C%BA%E8%B7%9F%E8%B8%AA%E5%99%A8/">基于RK3588的无人机跟踪器</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>临近毕业，担心找不到工作，于是开启我的博客生涯，希望能够被未来的老板赏识(祈祷)。</p>
+<hr>
+<h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><p>考虑到未来低空经济不断发展，无人机智能化是未来所趋，加上<strong>导师的吩咐</strong>，我的课题应运而生。之前实验室的跟踪器基本只是一个demo(在开发板上跑个模型识别下视频就算完成)，而导师对我的要求是将其做成一个<strong>产品</strong>(此时我的小脑袋瓜充满问号)，所以我费劲脑汁，从产品的三要素出发(<strong>用户需求，功能，性能</strong>)开始了我的RK3588机载跟踪器开发。目前项目暂不打算开源(毕业后考虑)，但欢迎一起进行技术交流。</p>
+<h3 id="设备选型"><a href="#设备选型" class="headerlink" title="设备选型"></a>设备选型</h3><h4 id="1-机载电脑"><a href="#1-机载电脑" class="headerlink" title="1. 机载电脑"></a>1. 机载电脑</h4><p>本项目采用Rockchip RK3588作为机载电脑，原因有以下几点：</p>
+<ul>
+<li><p>国产化（实验室性质较为特殊）</p>
+</li>
+<li><p>RK3588有RGA(2D硬件加速)，MPP(视频编解码硬件加速)和NPU(神经网络加速器)</p>
+<ul>
+<li>RGA可以优化视频拉流时的色域转换(NV12转RGB)，图像变换(resize)等功能</li>
+<li>MPP可以实现硬件H264, H265的编解码，实现视频拉流和视频存储功能</li>
+<li>NPU可以加速神经网络推理速度，但需注意RK3588的NPU有三个核心，每个核心2TOPS, 核心之间没法共享算力。</li>
+</ul>
+</li>
+<li><p>RK3588配备4个2.4GHz的A76核心与4个1.8GHz的A55核心，可以处理一些复杂任务</p>
+</li>
+<li><p>SDK相对还算完善，可以通过瑞芯微的SDK自定义Linux镜像</p>
+</li>
+</ul>
+<img src="/2025/03/08/track_rk3588_1/rk3588dev.png" alt="image-20250412175053765" style="zoom: 67%;">
+
+<h4 id="2-图传模块"><a href="#2-图传模块" class="headerlink" title="2. 图传模块"></a>2. 图传模块</h4><p>本项目采用开源图传方案（经费不足），使用的是RunCam家的WifiLink1代，可以提供1080p90fps&#x2F;720p120fps的视频推流能力。跟踪器的性能好坏主要和<strong>跟踪延迟</strong>和<strong>跟踪帧率</strong>有关。</p>
+<ul>
+<li><p>跟踪延迟：由于跟踪器需要控制云台进行跟踪，若延迟较大，云台的控制延迟会过大，非常影响用户体验。</p>
+</li>
+<li><p>跟踪帧率：本项目采用单目标跟踪算法，跟踪算法是一种局&#x2F;部区域跟踪，若帧与帧之间物体位移较大会对跟踪性能产生较大影响。</p>
+</li>
+</ul>
+<img src="/2025/03/08/track_rk3588_1/wifilink.png" alt="image-20250412175908416" style="zoom: 33%;">
+
+<h4 id="3-无人机和跟踪云台"><a href="#3-无人机和跟踪云台" class="headerlink" title="3. 无人机和跟踪云台"></a>3. 无人机和跟踪云台</h4><p>无人机是我自己买零件组装，采用的是ZD550尺寸的四轴飞行器，不得不说这无人机是真烧钱呀。</p>
+<p>云台部分是直接淘宝买的一个二自由度的舵机云台, 只要轻点就行(无人机载重不太够)。</p>
+<center class="half">
+    <img src="/2025/03/08/track_rk3588_1/fly.png" alt="image-20250412180631848" style="zoom:18%;">
+    <img src="/2025/03/08/track_rk3588_1/genzongqi.png" alt="image-20250412180158857" style="zoom: 35%;">
+</center>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">叶炯凯</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/03/08/track_rk3588_1/">http://example.com/2025/03/08/track_rk3588_1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">YJK的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/RK3588/">RK3588</a><a class="post-meta__tags" href="/tags/%E8%B7%9F%E8%B8%AA%E5%99%A8/">跟踪器</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/03/09/hello-world2/" title="Hello World2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hello World2</div></div><div class="info-2"><div class="info-item-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">叶炯凯</div><div class="author-info-description">用效率换取更多的时间</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yejiongkai"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">项目介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E9%80%89%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">设备选型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9C%BA%E8%BD%BD%E7%94%B5%E8%84%91"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 机载电脑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9B%BE%E4%BC%A0%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 图传模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%97%A0%E4%BA%BA%E6%9C%BA%E5%92%8C%E8%B7%9F%E8%B8%AA%E4%BA%91%E5%8F%B0"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 无人机和跟踪云台</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/09/hello-world2/" title="Hello World2">Hello World2</a><time datetime="2025-03-08T16:18:27.066Z" title="发表于 2025-03-09 00:18:27">2025-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/08/track_rk3588_1/" title="无人机跟踪器——介绍和展示">无人机跟踪器——介绍和展示</a><time datetime="2025-03-08T12:46:36.972Z" title="发表于 2025-03-08 20:46:36">2025-03-08</time></div></div></div></div></div></div></main><footer id="footer" style="background: black;"><div id="footer-wrap"><div class="copyright">&copy;2025 By 叶炯凯</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
